@@ -1,0 +1,22 @@
+[project]
+name = "kisanagent-env"
+version = "0.1.0"
+description = "Multi-agent OpenEnv environment for Indian farmer decision support"
+authors = [
+  { name="Nilesh Gupta", email="nileshgupta48224@gmail.com" }
+]
+readme = "README.md"
+requires-python = ">=3.10"
+
+dependencies = [
+  "fastapi",
+  "uvicorn",
+  "openai",
+  "pydantic>=2.0",
+  "python-dotenv",
+  "httpx",
+  "openenv-core>=0.2.0"
+]
+
+[tool.uv]
+dev-dependencies = []

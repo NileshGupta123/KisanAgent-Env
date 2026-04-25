@@ -1,0 +1,62 @@
+name: KisanAgent-Env
+version: "0.1.0"
+description: >
+  Multi-agent reinforcement learning environment for Indian farmer decision support.
+  600 million Indian farmers face daily decisions on crop disease, fertilizer,
+  irrigation, planting, and market timing. KisanAgent-Env trains AI agents to
+  provide verifiable, actionable advice using RLVR (Reinforcement Learning from
+  Verifiable Rewards).
+
+# 🔧 FIX: Use actual URL (env variable may not resolve)
+env_base_url: http://127.0.0.1:8000
+
+endpoints:
+  reset: /reset
+  step: /step
+  # 🔧 FIX: remove /state if not implemented OR comment it
+  # state: /state
+
+agents:
+  - name: DiagnosisAgent
+    role: Analyses crop symptoms and identifies disease with pathogen and severity
+  - name: AdvisoryAgent
+    role: Provides domain-specific advice across 5 farming task types
+  - name: EvaluatorAgent
+    role: Scores agent output, generates feedback, updates agent memory
+
+tasks:
+  - id: crop-disease
+    difficulty: easy
+    description: Identify crop disease from symptoms, weather, and soil data
+  - id: fertilizer-advice
+    difficulty: easy-medium
+    description: Recommend NPK ratio, fertilizer products, dose, and timing
+  - id: irrigation-schedule
+    difficulty: medium
+    description: Plan irrigation frequency, duration, and water quantity
+  - id: planting-advice
+    difficulty: medium-hard
+    description: Select best crop, variety, and sowing window for the season
+  - id: market-optimization
+    difficulty: hard
+    description: Choose best selling option to maximise farmer revenue
+
+reward:
+  type: verifiable
+  range: [0.0, 1.0]
+  components: per-task structured scoring
+  anti_hacking: gated rewards (disease must be correct to unlock treatment score)
+
+self_improvement:
+  memory: agent stores past mistakes from EvaluatorAgent
+  difficulty_scaling: auto-scales easy→medium→hard as rewards improve
+  target_curve: 0.3 → 0.9 over training episodes
+
+languages:
+  - English
+  - Hindi
+  # 🔧 FIX: remove unsupported field OR keep as future note
+  # (hindi_advice field not yet implemented in code)
+
+docker_port: 7860
+huggingface_space: Nile-2026/kisanagent-env
