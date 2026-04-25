@@ -15,7 +15,7 @@ One wrong decision can result in **entire season loss**.
 
 ## 🤖 Solution
 
-We built **KisanAgent** — a **multi-agent AI environment** where agents learn to make **reliable farming decisions** using **verifiable rewards and feedback loops**.
+“I developed **KisanAgent** — a **multi-agent AI environment** where agents learn to make **reliable farming decisions** using **verifiable rewards and feedback loops**.
 
 This is **not just a chatbot** — it is a **decision-making environment**.
 
