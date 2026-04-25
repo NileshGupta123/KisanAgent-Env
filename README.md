@@ -93,13 +93,13 @@ Episode 5 → Score: 0.9+
 
 We simulate training using multiple episodes:
 
-👉 **Colab Notebook:** *(add your link here)*
+👉 **Colab Notebook:** *(https://colab.research.google.com/drive/1O37wZRD7FbnpZ-nLcJsOFLwKj52Dlb8t?usp=sharing)*
 
 ---
 
 ## 🚀 Live Demo
 
-👉 **HuggingFace Space:** *(add your URL here)*
+👉 **HuggingFace Space:** *(https://nile-2026-kisanagent-env.hf.space/docs)*
 
 ---
 
