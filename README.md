@@ -103,6 +103,31 @@ We simulate training using multiple episodes:
 
 ---
 
+---
+
+## 🖥️ Frontend Demo
+
+We built an interactive frontend interface for real-time agent evaluation.
+
+It allows users to:
+
+- Enter farming scenarios  
+- Get AI-generated decisions  
+- View reward score (0–100)  
+- See bilingual recommendations (English + Hindi 🇮🇳)  
+
+This transforms the system into a **complete product**, not just an API.
+
+👉 🌐 Frontend Live: https://kisanagent-frontend.vercel.app
+
+### 📸 Screenshot
+
+![Frontend Demo](assets/frontend.png)
+
+
+
+---
+
 ## 🐳 Deployment
 
 This project is fully containerized using Docker:
