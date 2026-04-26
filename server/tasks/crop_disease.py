@@ -1,43 +1,22 @@
-from server.models import FarmerState, AgentResponse
-from server.agents.diagnosis_agent import DiagnosisAgent
-from server.agents.advisory_agent import AdvisoryAgent
-
+from server.models import FarmerState, AgentResponse, DiagnosisOutput, AdvisoryOutput
 
 class CropDiseaseTask:
-
-    def __init__(self):
-        self.diagnosis_agent = DiagnosisAgent()
-        self.advisory_agent = AdvisoryAgent()
-
     def run(self, state: FarmerState) -> AgentResponse:
-        # 🔹 Step 1: Diagnose
-        diagnosis = self.diagnosis_agent.analyze(state)
-
-        # 🔹 Step 2: Advisory based on diagnosis
-        advisory = self.advisory_agent.suggest(
-            state, diagnosis.disease
-        )
-
-        # 🔹 Step 3: Explanation
-        explanation = (
-            f"For your crop {state.crop}, the issue is {diagnosis.disease}. "
-            f"This is {diagnosis.severity} severity. "
-            f"We recommend: {advisory.treatment}. "
-            f"Fertilizer: {advisory.fertilizer}. "
-            f"Irrigation: {advisory.irrigation}."
-        )
-
-        hindi_advice = (
-            f"{state.crop} fasal mein {diagnosis.disease} ki samasya hai. "
-            f"Iska star {diagnosis.severity} hai. "
-            f"Upchar: {advisory.treatment}. "
-            f"Khad: {advisory.fertilizer}. "
-            f"Paani: {advisory.irrigation}."
-        )
-
+        # Dummy Logic for demo
+        disease = "Wheat Rust" if state.crop == "Wheat" else "Bacterial Blight"
+        
         return AgentResponse(
-            diagnosis=diagnosis,
-            advisory=advisory,
-            explanation=explanation,
-            hindi_advice=hindi_advice
+            diagnosis=DiagnosisOutput(
+                disease=disease,
+                confidence=0.88,
+                severity="Medium"
+            ),
+            advisory=AdvisoryOutput(
+                treatment="Apply Propiconazole 25% EC at 500ml/hectare.",
+                fertilizer="Apply Potassium-rich fertilizer to strengthen stem.",
+                irrigation="Reduce irrigation frequency to lower humidity around crop canopy.",
+                precautions="Avoid walking through the field when wet to prevent spore spread."
+            ),
+            explanation=f"The symptoms like {', '.join(state.symptoms)} in {state.zone} suggest a fungal infection typical of {disease} under {state.temperature_c}°C conditions.",
+            hindi_advice=f"आपकी {state.crop} की फसल में {disease} के लक्षण दिख रहे हैं। कृपया प्रोपिकोनाज़ोल का छिड़काव करें और सिंचाई कम करें।"
         )

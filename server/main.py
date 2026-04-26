@@ -1,12 +1,22 @@
 from fastapi import FastAPI
 from dotenv import load_dotenv
 
+from fastapi.middleware.cors import CORSMiddleware
 from server.env import KisanAgentEnv
 
 # Load env
 load_dotenv(override=False)
 
 app = FastAPI(title="KisanAgent OpenEnv")
+
+# Enable CORS
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 env = KisanAgentEnv()
 
